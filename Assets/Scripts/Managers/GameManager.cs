@@ -1,13 +1,13 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : Singleton<GameManager>
 {
-    public static GameManager instance;
-
     #region SerializeFields
 
     [Header("Objects")]
     [SerializeField] private PlayerController Player;
+    [SerializeField] private NavMeshSurface NavMeshSurface;
 
     [Header("Values")]
     [SerializeField] private int mainMoney;
@@ -24,6 +24,10 @@ public class GameManager : Singleton<GameManager>
     public PlayerController GetPlayer()
     {
         return Player;
+    }
+    public NavMeshSurface GetNavmesh()
+    {
+        return NavMeshSurface;
     }
     public int GetMoney()
     {

@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         JoyStickMovement();
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            anim.SetTrigger("Attack");
+        }
     }
     public void JoyStickMovement()
     {
