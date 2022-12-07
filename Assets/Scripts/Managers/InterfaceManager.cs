@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class InterfaceManager : MonoBehaviour
+public class InterfaceManager : Singleton<InterfaceManager>
 {
     public static InterfaceManager instance;
 
@@ -12,8 +12,15 @@ public class InterfaceManager : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] private TextMeshProUGUI mainMoney_TXT;
-    [SerializeField] private GameObject level_Panel;
-    [SerializeField] private GameObject cosmetics_Panel;
+
+
+    [SerializeField] private GameObject GameCanvas;
+    
+    
+    [SerializeField] private GameObject MenuPanel;
+    [SerializeField] private GameObject levelsPanel;
+    [SerializeField] private GameObject moneyCanvas;
+    
     #endregion
 
     public virtual void Awake()
@@ -29,6 +36,8 @@ public class InterfaceManager : MonoBehaviour
     }
     private void Start()
     {
+        MenuPanel.SetActive(true);
+        moneyCanvas.SetActive(true);
         UpdateMoney();
     }
 
@@ -41,19 +50,11 @@ public class InterfaceManager : MonoBehaviour
         mainMoney_TXT.text = $"{PlayerPrefs.GetInt("Money")}";
     }
 
-    public void OpenMenu()
+    public void ClosePanels()
     {
-        level_Panel.SetActive(false);
-        cosmetics_Panel.SetActive(false);
-    }
-    public void LevelPanel()
-    {
-        level_Panel.SetActive(true);
-        cosmetics_Panel.SetActive(false);
-    }
-    public void CosmeticsPanel()
-    {
-        level_Panel.SetActive(false);
-        cosmetics_Panel.SetActive(true);
+        MenuPanel.SetActive(false);
+        moneyCanvas.SetActive(false);
+        levelsPanel.SetActive(false);
+        GameCanvas.SetActive(true);
     }
 }

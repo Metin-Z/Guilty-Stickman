@@ -1,36 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public static GameManager instance;
 
     #region SerializeFields
+
     [Header("Objects")]
-    //[SerializeField] private PlayerController _player;
+    [SerializeField] private PlayerController Player;
 
     [Header("Values")]
     [SerializeField] private int mainMoney;
     #endregion
 
-    public virtual void Awake()
-    {
-        if (!instance)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
             IncreaseMoney(50);
         }
+    }
+    public PlayerController GetPlayer()
+    {
+        return Player;
     }
     public int GetMoney()
     {
