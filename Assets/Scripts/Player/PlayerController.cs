@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,11 +12,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private NavMeshAgent navMesh;
     [SerializeField] private float myStartSpeed;
+    [SerializeField] private List<GameObject> Swords;
     #endregion
 
     private void Start()
     {
         myStartSpeed = speed;
+        foreach (var item in Swords)
+        {
+            item.gameObject.SetActive(true);
+        }
     }
     private void Update()
     {
@@ -27,6 +34,10 @@ public class PlayerController : MonoBehaviour
             navMesh.enabled = false;
             anim.SetTrigger("Attack");
         }
+    }
+    public List<GameObject> GetSwords()
+    {
+        return Swords;
     }
     public void EndAttack()
     {
