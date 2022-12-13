@@ -34,6 +34,7 @@ public class PlayerController : Singleton<PlayerController>
     }
     public void FalseDeath()
     {
+        dynamicJoystick = InterfaceManager.Instance.GetJoyStick();
         anim.SetBool("Death", false);
         gameObject.TryGetComponent(out BoxCollider collider);
         collider.enabled = true;
@@ -101,7 +102,9 @@ public class PlayerController : Singleton<PlayerController>
             anim.SetBool("Death",true);
             anim.SetBool("Walk", false);
             gameObject.TryGetComponent(out BoxCollider collider);
+            gameObject.TryGetComponent(out Rigidbody rb);
             collider.enabled = false;
+            rb.velocity = Vector3.zero;
             InterfaceManager.Instance.GetGameCanvas().SetActive(false);
             currentHealth = baseHealth;
             StartCoroutine(FailLevel());

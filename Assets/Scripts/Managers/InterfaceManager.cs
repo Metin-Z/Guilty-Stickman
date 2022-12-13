@@ -16,6 +16,7 @@ public class InterfaceManager : Singleton<InterfaceManager>
 
 
     [SerializeField] private GameObject GameCanvas;
+    [SerializeField] private DynamicJoystick dynamicJoystick;
     [SerializeField] private GameObject failCanvas;
     
     
@@ -50,6 +51,10 @@ public class InterfaceManager : Singleton<InterfaceManager>
     public void UpdateMoney()
     {
         mainMoney_TXT.text = $"{PlayerPrefs.GetInt("Money")}";
+    }
+    public DynamicJoystick GetJoyStick()
+    {
+        return dynamicJoystick;
     }
     public GameObject GetGameCanvas()
     {

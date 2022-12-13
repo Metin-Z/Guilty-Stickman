@@ -5741,7 +5741,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.46181038, y: 7.9841103e-16, z: -7.4633714e-16, w: 0.88697875}
+  m_LocalRotation: {x: 0.46181038, y: -0.000000006924289, z: 0.0000000036051728, w: 0.8869787}
   m_LocalPosition: {x: -16.66, y: 16.531, z: 62.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29769,7 +29769,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539763317}
-  m_LocalRotation: {x: -0.000000029802319, y: -0.0000000040345167, z: 0.000000005763598,
+  m_LocalRotation: {x: 0.000000029802319, y: -0.0000000044767914, z: 0.00000000639542,
     w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -39759,6 +39759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMoney_TXT: {fileID: 950816463}
   GameCanvas: {fileID: 339991715}
+  dynamicJoystick: {fileID: 2162592533614587754}
   failCanvas: {fileID: 1442745719}
   MenuPanel: {fileID: 4966431765893034994}
   levelsPanel: {fileID: 428159809}
