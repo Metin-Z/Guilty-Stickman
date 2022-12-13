@@ -4,27 +4,44 @@ using UnityEngine;
 
 public class SpawnItem : MonoBehaviour
 {
-    public string itemName;
+    public int itemID;
+    public bool hat;
+    public bool sword;
     void Start()
     {
-        if (PlayerPrefs.GetInt("sword0select") ==1 && itemName == "sword0")
+        Debug.Log(PlayerPrefs.GetInt("swordSelect"));
+        Debug.Log(itemID);
+
+        ResetItem();
+    }
+
+    public void ResetItem()
+    {
+        if (sword == true)
         {
-            transform.gameObject.SetActive(true);
-        }
-        if (PlayerPrefs.GetInt("sword0select") != 1 && itemName == "sword0")
-        {
-            transform.gameObject.SetActive(false);
+            if (PlayerPrefs.GetInt("swordSelect") == itemID)
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
+
+            if (PlayerPrefs.GetInt("swordSelect") != itemID)
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
         }
 
-        if (PlayerPrefs.GetInt("sword1select") == 1 && itemName == "sword1")
+        if (hat == true)
         {
-            transform.gameObject.SetActive(true);
-        }
-        if (PlayerPrefs.GetInt("sword1select") != 1 && itemName == "sword1")
-        {
-            transform.gameObject.SetActive(false);
+            if (PlayerPrefs.GetInt("hatSelect") == itemID)
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
+
+            if (PlayerPrefs.GetInt("hatSelect") != itemID)
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
         }
     }
 
-    
 }

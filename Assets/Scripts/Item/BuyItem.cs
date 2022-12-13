@@ -6,92 +6,99 @@ public class BuyItem : MonoBehaviour
 {
     public GameObject SelectPanel;
 
-    public string itemName;
     public int itemID;
     public int price;
 
     public bool select;
     public bool buy;
+
+    public bool sword;
+    public bool hat;
     void Start()
     {
-        if (PlayerPrefs.GetInt("sword0select") == 1 && select == true)
+        if (sword == true)
         {
-            ChekActive();
+            SwordBuyDeActive();
         }
-        else
+        if (hat == true)
         {
-            ChekActive();
+            HatBuyDeActive();
         }
-        if (PlayerPrefs.GetInt("sword0buy") == 1 && buy == true)
-        {
-            ChekActive();
-            gameObject.SetActive(false);
-        }
-
     }
-
     public void BuySword(GameObject buttonComp)
     {
         buttonComp.TryGetComponent(out BuyItem button);
         if (GameManager.Instance.GetMoney() >= button.price)
         {
-            if (button.itemName == "sword0" && button.itemID ==0)
-            {
-                PlayerPrefs.SetInt("sword0select",1);
-                PlayerPrefs.SetInt("sword0buy",1);
-            }
+            PlayerPrefs.SetInt("swordSelect", button.itemID);
+
             GameManager.Instance.DecreaseMoney(button.price);
+            PlayerPrefs.SetInt("buySword" + button.itemID,1);
             OpenSword();
-            ChekActive();
+            SwordBuyDeActive();
         }
     }
+    public void BuyHat(GameObject buttonComp)
+    {
+        buttonComp.TryGetComponent(out BuyItem button);
+        if (GameManager.Instance.GetMoney() >= button.price)
+        {
+            PlayerPrefs.SetInt("hatSelect", button.itemID);
 
+            GameManager.Instance.DecreaseMoney(button.price);
+            PlayerPrefs.SetInt("buyHat" + button.itemID, 1);
+            OpenSword();
+            HatBuyDeActive();
+        }
+    }
     public void SelectSword(GameObject buttonComp)
     {
         buttonComp.TryGetComponent(out BuyItem button);
-        
-        if (button.itemName == "sword0" && button.itemID == 0)
-        {
-            ClearSelectSword();
-            PlayerPrefs.SetInt("swordSelect0", 1);
-        }
-        if (button.itemName == "sword1" && button.itemID == 1)
-        {
-            ClearSelectSword();
-            PlayerPrefs.SetInt("swordSelect1", 1);
-        }
+        PlayerPrefs.SetInt("swordSelect", button.itemID);
         OpenSword();
     }
-    public void ChekActive()
+    public void SelectHat(GameObject buttonComp)
     {
-        if (PlayerPrefs.GetInt("sword0buy") == 1)
+        buttonComp.TryGetComponent(out BuyItem button);
+        PlayerPrefs.SetInt("hatSelect", button.itemID);
+        OpenSword();
+    }
+    public void SwordBuyDeActive()
+    {
+        gameObject.TryGetComponent(out BuyItem button);
+        if (PlayerPrefs.GetInt("buySword"+button.itemID)== 1 && buy == true)
         {
-            SelectPanel.SetActive(true);
-            OpenSword();
-        }
-        else
-        {
-            SelectPanel.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
+    public void HatBuyDeActive()
+    {
+        gameObject.TryGetComponent(out BuyItem button);
+        if (PlayerPrefs.GetInt("buyHat" + button.itemID) == 1 && buy == true)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     private void OpenSword()
     {
         List<GameObject> SwordList = GameManager.Instance.GetPlayer().GetSwords();
+        List<GameObject> HatList = GameManager.Instance.GetPlayer().GetHats();
         for (int i = 0; i < SwordList.Count; i++)
         {
             foreach (var item in SwordList)
             {
-                item.gameObject.SetActive(false);
-                item.gameObject.SetActive(true);
+                item.transform.parent.gameObject.TryGetComponent(out SpawnItem itemSpawn);
+                itemSpawn.ResetItem();
             }
         }
-    }
-    public void ClearSelectSword()
-    {
-        PlayerPrefs.SetInt("swordSelect0", 0);
-        PlayerPrefs.SetInt("swordSelect1", 0);
-        PlayerPrefs.SetInt("swordSelect2", 0);
-        PlayerPrefs.SetInt("swordSelect3", 0);
-        PlayerPrefs.SetInt("swordSelect4", 0);
+        for (int i = 0; i < HatList.Count; i++)
+        {
+            foreach (var item in HatList)
+            {
+                item.transform.parent.gameObject.TryGetComponent(out SpawnItem itemSpawn);
+                itemSpawn.ResetItem();
+            }
+        }
     }
 }

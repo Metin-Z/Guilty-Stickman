@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2890050633959513630
+--- !u!1 &3070418235603678353
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2886707858082651944}
-  - component: {fileID: 2912115382209085176}
-  - component: {fileID: 2903258368202728704}
+  - component: {fileID: 3065351793950061721}
+  - component: {fileID: 3090483644205452851}
+  - component: {fileID: 3084960535188465113}
   m_Layer: 0
-  m_Name: KingCrown
+  m_Name: JesterHat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2886707858082651944
+--- !u!4 &3065351793950061721
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2890050633959513630}
+  m_GameObject: {fileID: 3070418235603678353}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.087, z: 0}
-  m_LocalScale: {x: 1.07, y: 1.07, z: 1.07}
+  m_LocalPosition: {x: 0, y: 0.111, z: 0}
+  m_LocalScale: {x: 0.8886713, y: 0.9696604, z: 0.9696604}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2886865513502311602}
+  m_Father: {fileID: 3068471852960167491}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2912115382209085176
+--- !u!33 &3090483644205452851
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2890050633959513630}
-  m_Mesh: {fileID: 4300000, guid: 62f01b6debe669c489c25b25eabded15, type: 3}
---- !u!23 &2903258368202728704
+  m_GameObject: {fileID: 3070418235603678353}
+  m_Mesh: {fileID: 4300000, guid: 1428819c4400eea49a7ed100e1b0e144, type: 3}
+--- !u!23 &3084960535188465113
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2890050633959513630}
+  m_GameObject: {fileID: 3070418235603678353}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41bb364d019081e45b230d7ca0d9d4de, type: 2}
+  - {fileID: 2100000, guid: e635d1197c8951b45a3f8398b065f3c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,7 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &2890392090966460114
+--- !u!1 &3070677978809862363
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2886865513502311602}
+  - component: {fileID: 3068471852960167491}
   m_Layer: 0
   m_Name: Hat02
   m_TagString: Untagged
@@ -99,19 +99,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2886865513502311602
+--- !u!4 &3068471852960167491
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2890392090966460114}
+  m_GameObject: {fileID: 3070677978809862363}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 2, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2886707858082651944}
+  - {fileID: 3065351793950061721}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

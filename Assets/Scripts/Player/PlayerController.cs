@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private NavMeshAgent navMesh;
     [SerializeField] private float myStartSpeed;
     [SerializeField] private List<GameObject> Swords;
+    [SerializeField] private List<GameObject> Hats;
     #endregion
 
     private void Start()
@@ -38,6 +39,10 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> GetSwords()
     {
         return Swords;
+    }
+    public List<GameObject> GetHats()
+    {
+        return Hats;
     }
     public void EndAttack()
     {
