@@ -9,9 +9,6 @@ public class SpawnItem : MonoBehaviour
     public bool sword;
     void Start()
     {
-        Debug.Log(PlayerPrefs.GetInt("swordSelect"));
-        Debug.Log(itemID);
-
         ResetItem();
     }
 

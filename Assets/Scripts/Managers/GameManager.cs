@@ -12,8 +12,6 @@ public class GameManager : Singleton<GameManager>
     [Header("Values")]
     [SerializeField] private int mainMoney;
     #endregion
-
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InterfaceManager : Singleton<InterfaceManager>
 {
@@ -15,6 +16,7 @@ public class InterfaceManager : Singleton<InterfaceManager>
 
 
     [SerializeField] private GameObject GameCanvas;
+    [SerializeField] private GameObject failCanvas;
     
     
     [SerializeField] private GameObject MenuPanel;
@@ -49,7 +51,23 @@ public class InterfaceManager : Singleton<InterfaceManager>
     {
         mainMoney_TXT.text = $"{PlayerPrefs.GetInt("Money")}";
     }
-
+    public GameObject GetGameCanvas()
+    {
+        return GameCanvas;
+    }
+    public GameObject GetFailCanvas()
+    {
+        return failCanvas;
+    }
+    public GameObject GetMenuCanvas()
+    {
+        return MenuPanel;
+    }
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
     public void ClosePanels()
     {
         MenuPanel.SetActive(false);

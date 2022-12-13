@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     public DynamicJoystick dynamicJoystick;
     public float speed;
@@ -12,17 +14,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private NavMeshAgent navMesh;
     [SerializeField] private float myStartSpeed;
+
     [SerializeField] private List<GameObject> Swords;
     [SerializeField] private List<GameObject> Hats;
+
+    [Header("Health")]
+    [SerializeField] private Slider HealthBar;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int baseHealth;
+    [SerializeField] private int currentHealth;
+
     #endregion
 
     private void Start()
     {
+        Health();
+        baseHealth = maxHealth;
         myStartSpeed = speed;
-        foreach (var item in Swords)
-        {
-            item.gameObject.SetActive(true);
-        }
+    }
+    public void FalseDeath()
+    {
+        anim.SetBool("Death", false);
+        gameObject.TryGetComponent(out BoxCollider collider);
+        collider.enabled = true;
     }
     private void Update()
     {
@@ -43,6 +57,10 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> GetHats()
     {
         return Hats;
+    }
+    public Animator GetAnimator()
+    {
+        return anim;
     }
     public void EndAttack()
     {
@@ -72,5 +90,37 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("Walk", false);
             }
         }
+    }
+
+    public void Health()
+    {
+        HealthBar.maxValue = maxHealth;
+        HealthBar.value = currentHealth;
+        if (currentHealth <= 0)
+        {
+            anim.SetBool("Death",true);
+            anim.SetBool("Walk", false);
+            gameObject.TryGetComponent(out BoxCollider collider);
+            collider.enabled = false;
+            InterfaceManager.Instance.GetGameCanvas().SetActive(false);
+            currentHealth = baseHealth;
+            StartCoroutine(FailLevel());
+        }
+    }
+    public void takeDamage(int takenDamage)
+    {
+        currentHealth -= takenDamage;
+        Health();
+    }
+    public void regen(int regenValue)
+    {
+        currentHealth += regenValue;
+        Health();
+    }
+    public IEnumerator FailLevel()
+    {
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 0;
+        InterfaceManager.Instance.GetFailCanvas().SetActive(true);
     }
 }
