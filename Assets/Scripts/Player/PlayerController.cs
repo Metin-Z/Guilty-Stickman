@@ -16,6 +16,10 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private NavMeshAgent navMesh;
     [SerializeField] private float myStartSpeed;
 
+
+
+    [SerializeField] private GameObject Indicator;
+
     [SerializeField] private List<GameObject> Swords;
     [SerializeField] private List<GameObject> Hats;
 
@@ -59,6 +63,10 @@ public class PlayerController : Singleton<PlayerController>
     public List<GameObject> GetHats()
     {
         return Hats;
+    }
+    public GameObject GetPlayerIndicator()
+    {
+        return Indicator;
     }
     public Animator GetAnimator()
     {

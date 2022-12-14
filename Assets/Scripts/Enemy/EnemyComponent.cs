@@ -31,28 +31,24 @@ public class EnemyComponent : MonoBehaviour
             {
                 anim.SetBool("Walk", true);
                 navMesh.SetDestination(player.transform.position);
+                if (Mathf.Abs(distance) <= 3)
+                {
+                    anim.SetBool("Walk", false);
+                    anim.SetBool("Attack", true);
+                    transform.LookAt(player.transform);
+                }
+                else
+                {
+                    anim.SetBool("Attack", false);
+                    anim.SetBool("Walk", true);
+                }
             }
             else
             {
                 anim.SetBool("Walk", false);
-            }
-
-
-            if (distance <= 3)
-            {
-                anim.SetBool("Walk", false);
-                anim.SetBool("Attack", true);
-            }
-            else
-            {
-                anim.SetBool("Attack", false);
-                anim.SetBool("Walk", true);
             }
         }
     }
-
-
-
     public void Health()
     {
         HealthBar.maxValue = maxHealth;
