@@ -10,6 +10,7 @@ public class SelectLevelButton : MonoBehaviour
     {
         Instantiate(LevelManager.Instance.GetLevels().SingleOrDefault().Prefab);
         InterfaceManager.Instance.ClosePanels();
+        PlayerController.Instance.StartLevel();
         GameManager.Instance.GetNavmesh().BuildNavMesh();
     }
 

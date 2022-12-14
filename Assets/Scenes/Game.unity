@@ -5741,7 +5741,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.46181038, y: -0.000000006924289, z: 0.0000000036051728, w: 0.8869787}
+  m_LocalRotation: {x: 0.46181038, y: -3.107918e-15, z: 2.877975e-15, w: 0.88697875}
   m_LocalPosition: {x: -16.66, y: 16.531, z: 62.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29769,7 +29769,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539763317}
-  m_LocalRotation: {x: 0.000000029802319, y: -0.0000000044767914, z: 0.00000000639542,
+  m_LocalRotation: {x: -0.000000029802319, y: 0.000000004533582, z: -0.0000000064765464,
     w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34389,6 +34389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 6476176087440644560}
   NavMeshSurface: {fileID: 1930156692}
+  mainCamera: {fileID: 330585545}
   mainMoney: 0
 --- !u!1 &1783129757
 GameObject:
@@ -48676,7 +48677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3faed17bff8ab4681269b39b741ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 330585546}
 --- !u!114 &5701597406180454737
 MonoBehaviour:
   m_ObjectHideFlags: 0

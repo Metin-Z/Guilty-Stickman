@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -20,9 +21,9 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("Health")]
     [SerializeField] private Slider HealthBar;
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int baseHealth;
-    [SerializeField] private int currentHealth;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float baseHealth;
+    [SerializeField] private float currentHealth;
 
     #endregion
 
@@ -92,11 +93,16 @@ public class PlayerController : Singleton<PlayerController>
             }
         }
     }
+    public void StartLevel()
+    {
+        currentHealth = maxHealth;
+        Health();
+    }
 
     public void Health()
     {
         HealthBar.maxValue = maxHealth;
-        HealthBar.value = currentHealth;
+        HealthBar.DOValue(currentHealth,0.5f);
         if (currentHealth <= 0)
         {
             anim.SetBool("Death",true);
@@ -118,11 +124,16 @@ public class PlayerController : Singleton<PlayerController>
     public void regen(int regenValue)
     {
         currentHealth += regenValue;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
         Health();
     }
     public IEnumerator FailLevel()
     {
         yield return new WaitForSeconds(1);
+        transform.position = new Vector3(0, 0, 0);
         Time.timeScale = 0;
         InterfaceManager.Instance.GetFailCanvas().SetActive(true);
     }

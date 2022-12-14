@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Objects")]
     [SerializeField] private PlayerController Player;
     [SerializeField] private NavMeshSurface NavMeshSurface;
+    [SerializeField] private Camera mainCamera;
 
     [Header("Values")]
     [SerializeField] private int mainMoney;
@@ -23,6 +24,10 @@ public class GameManager : Singleton<GameManager>
         {
             IncreaseMoney(50);
         }
+    }
+    public Camera GetCamera()
+    {
+        return mainCamera;
     }
     public PlayerController GetPlayer()
     {

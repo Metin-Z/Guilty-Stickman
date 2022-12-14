@@ -246,7 +246,7 @@ namespace DG.DOTweenEditor
             Undo.RecordObject(_src, "DOTween Animation");
             Undo.RecordObject(_settings, "DOTween Animation");
 
-//            _src.isValid = Validate(); // Moved down
+//           _src.isValid = Validate(); // Moved down
 
             EditorGUIUtility.labelWidth = 110;
 
