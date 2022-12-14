@@ -1,0 +1,87 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
+using DG.Tweening;
+public class EnemyComponent : MonoBehaviour
+{
+    [SerializeField] private float targetRange;
+    [SerializeField] private NavMeshAgent navMesh;
+    [SerializeField] private Animator anim;
+
+    [Header("Health")]
+    [SerializeField] private Slider HealthBar;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float baseHealth;
+    [SerializeField] private float currentHealth;
+    bool active = true;
+    private void Start()
+    {
+        StartCoroutine(AIControl());
+    }
+    public IEnumerator AIControl()
+    {
+        while (active == true)
+        {
+            yield return new WaitForFixedUpdate();
+            GameObject player = PlayerController.Instance.gameObject;
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (Mathf.Abs(distance) < targetRange)
+            {
+                anim.SetBool("Walk", true);
+                navMesh.SetDestination(player.transform.position);
+            }
+            else
+            {
+                anim.SetBool("Walk", false);
+            }
+
+
+            if (distance <= 3)
+            {
+                anim.SetBool("Walk", false);
+                anim.SetBool("Attack", true);
+            }
+            else
+            {
+                anim.SetBool("Attack", false);
+                anim.SetBool("Walk", true);
+            }
+        }
+    }
+
+
+
+    public void Health()
+    {
+        HealthBar.maxValue = maxHealth;
+        HealthBar.DOValue(currentHealth, 0.5f);
+        if (currentHealth <= 0)
+        {
+            anim.SetBool("Death", true);
+            anim.SetBool("Walk", false);
+            gameObject.TryGetComponent(out BoxCollider collider);
+            gameObject.TryGetComponent(out Rigidbody rb);
+            collider.enabled = false;
+            rb.velocity = Vector3.zero;
+            currentHealth = baseHealth;
+            PlayerController.Instance.regen(7);
+            Destroy(gameObject, 2);
+        }
+    }
+    public void takeDamage(int takenDamage)
+    {
+        currentHealth -= takenDamage;
+        Health();
+    }
+    public void regen(int regenValue)
+    {
+        currentHealth += regenValue;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        Health();
+    }
+}

@@ -7,6 +7,7 @@ TagManager:
   - FxTemporaire
   - PlayerSword
   - Level
+  - Enemy
   layers:
   - Default
   - TransparentFX
