@@ -9,6 +9,7 @@ public class EnemyComponent : MonoBehaviour
     [SerializeField] private float targetRange;
     [SerializeField] private NavMeshAgent navMesh;
     [SerializeField] private Animator anim;
+    [SerializeField] private GameObject coinPrefab;
 
     [Header("Health")]
     [SerializeField] private Slider HealthBar;
@@ -63,6 +64,9 @@ public class EnemyComponent : MonoBehaviour
             rb.velocity = Vector3.zero;
             currentHealth = baseHealth;
             PlayerController.Instance.regen(7);
+            Vector3 CoinSpawnPos = new Vector3(Random.Range(transform.position.x, transform.position.x+3),PlayerController.Instance.transform.position.y,Random.Range(transform.position.z, transform.position.z + 3));
+
+            Instantiate(coinPrefab,CoinSpawnPos,Quaternion.identity);
             Destroy(gameObject, 2);
         }
     }

@@ -774,6 +774,8 @@ MonoBehaviour:
   targetRange: 10
   navMesh: {fileID: 3272553216873693785}
   anim: {fileID: 6117147712544376097}
+  coinPrefab: {fileID: 4980814667742233589, guid: 413f142013d0c2343875fa99ab199fdb,
+    type: 3}
   HealthBar: {fileID: 989171411474962355}
   maxHealth: 100
   baseHealth: 0
