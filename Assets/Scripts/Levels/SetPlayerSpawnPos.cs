@@ -7,12 +7,16 @@ public class SetPlayerSpawnPos : MonoBehaviour
     private void Start()
     {
         LevelManager.Instance.GetPlayerSpawnPos().transform.position = transform.position;
-        StartCoroutine(TeleportPlayer());
     }
-
-    public IEnumerator TeleportPlayer()
+    public void TeleportPlayer()
     {
-        yield return new WaitForSeconds(0.1f);
-        GameManager.Instance.GetPlayer().transform.position = LevelManager.Instance.GetPlayerSpawnPos().position;
+        StartCoroutine(Tplayer());
+
+    }
+    public IEnumerator Tplayer()
+    {
+        yield return new WaitForSeconds(0.25f);
+        PlayerController.Instance.transform.position = transform.position;
+        Debug.Log("Player Iþýnlandý");
     }
 }

@@ -13,7 +13,10 @@ public class FinalLevel : MonoBehaviour
         {
             InterfaceManager.Instance.GetMenuCanvas().SetActive(true);
             InterfaceManager.Instance.GetMenuCanvas().SetActive(true);
-            PlayerPrefs.SetInt("LevelID",levelId);
+            if (levelId > PlayerPrefs.GetInt("LevelID"))
+            {
+                PlayerPrefs.SetInt("LevelID", levelId);
+            }
             GameObject level;
             level =GameObject.FindGameObjectWithTag("Level");
             Destroy(level);

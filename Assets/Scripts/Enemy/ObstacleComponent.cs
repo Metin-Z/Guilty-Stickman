@@ -23,7 +23,12 @@ public class ObstacleComponent : MonoBehaviour
             if (arrow == true)
             {
                 Destroy(gameObject);
-            }
+            }    
+        }
+        transform.TryGetComponent(out Rigidbody rb);
+        if (rb != null)
+        {
+            Destroy(gameObject);
         }
     }
 }
