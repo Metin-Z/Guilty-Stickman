@@ -17,6 +17,9 @@ public class EnemyComponent : MonoBehaviour
     [SerializeField] private float baseHealth;
     [SerializeField] private float currentHealth;
     [SerializeField] private enemyType enemyType;
+    [SerializeField] private float arrowSpeed;
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Transform arrowPos;
     bool active = true;
     private void Start()
     {
@@ -71,7 +74,6 @@ public class EnemyComponent : MonoBehaviour
                 transform.LookAt(player.transform.position);
 
                 anim.SetBool("Shoot", true);
-                anim.SetBool("Attack", true);
                 transform.LookAt(player.transform);
 
             }
@@ -80,6 +82,14 @@ public class EnemyComponent : MonoBehaviour
                 anim.SetBool("Shoot", false);
             }
         }
+    }
+    public void ShootPlayer()
+    {
+        Vector3 arrowSpawnPos = new Vector3(arrowPos.transform.position.x, arrowPos.transform.position.y, arrowPos.transform.position.z);
+        GameObject arrow;
+        arrow = Instantiate(arrowPrefab, arrowSpawnPos,Quaternion.identity);
+        arrow.TryGetComponent(out Rigidbody rb);
+        rb.AddForce(transform.forward * arrowSpeed);
     }
     public void Health()
     {

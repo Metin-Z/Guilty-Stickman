@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 3272553216873693785}
   - component: {fileID: 4540751325397574713}
   - component: {fileID: -4402141299495349191}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy01
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -780,6 +780,9 @@ MonoBehaviour:
   maxHealth: 100
   baseHealth: 0
   currentHealth: 100
+  enemyType: 0
+  arrowPrefab: {fileID: 0}
+  arrowPos: {fileID: 0}
 --- !u!195 &3272553216873693785
 NavMeshAgent:
   m_ObjectHideFlags: 0
