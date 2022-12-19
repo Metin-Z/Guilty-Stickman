@@ -16,12 +16,21 @@ public class EnemyComponent : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float baseHealth;
     [SerializeField] private float currentHealth;
+    [SerializeField] private enemyType enemyType;
     bool active = true;
     private void Start()
     {
-        StartCoroutine(AIControl());
+        switch (enemyType)
+        {
+            case enemyType.Axeman:
+                StartCoroutine(AxemanControl());
+                break;
+            case enemyType.Archer:
+                StartCoroutine(ArcherControl());
+                break;
+        }
     }
-    public IEnumerator AIControl()
+    public IEnumerator AxemanControl()
     {
         while (active == true)
         {
@@ -50,6 +59,28 @@ public class EnemyComponent : MonoBehaviour
             }
         }
     }
+    public IEnumerator ArcherControl()
+    {
+        while (active == true)
+        {
+            yield return new WaitForFixedUpdate();
+            GameObject player = PlayerController.Instance.gameObject;
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (Mathf.Abs(distance) < targetRange)
+            {
+                transform.LookAt(player.transform.position);
+
+                anim.SetBool("Shoot", true);
+                anim.SetBool("Attack", true);
+                transform.LookAt(player.transform);
+
+            }
+            else
+            {
+                anim.SetBool("Shoot", false);
+            }
+        }
+    }
     public void Health()
     {
         HealthBar.maxValue = maxHealth;
@@ -64,9 +95,9 @@ public class EnemyComponent : MonoBehaviour
             rb.velocity = Vector3.zero;
             currentHealth = baseHealth;
             PlayerController.Instance.regen(7);
-            Vector3 CoinSpawnPos = new Vector3(Random.Range(transform.position.x, transform.position.x+3),PlayerController.Instance.transform.position.y,Random.Range(transform.position.z, transform.position.z + 3));
+            Vector3 CoinSpawnPos = new Vector3(Random.Range(transform.position.x, transform.position.x + 3), PlayerController.Instance.transform.position.y, Random.Range(transform.position.z, transform.position.z + 3));
 
-            Instantiate(coinPrefab,CoinSpawnPos,Quaternion.identity);
+            Instantiate(coinPrefab, CoinSpawnPos, Quaternion.identity);
             Destroy(gameObject, 2);
         }
     }

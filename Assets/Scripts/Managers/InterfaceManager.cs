@@ -71,6 +71,7 @@ public class InterfaceManager : Singleton<InterfaceManager>
     public void MainMenu()
     {
         Time.timeScale = 1;
+
         SceneManager.LoadScene(0);
     }
     public void ClosePanels()

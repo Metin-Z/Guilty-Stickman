@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        Debug.Log(PlayerPrefs.GetInt("LevelID"));
         Player = PlayerController.Instance;
     }
     private void Update()
