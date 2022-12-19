@@ -15,7 +15,7 @@ public class SetPlayerSpawnPos : MonoBehaviour
     }
     public IEnumerator Tplayer()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
         PlayerController.Instance.transform.position = transform.position;
         Debug.Log("Player Iþýnlandý");
     }
