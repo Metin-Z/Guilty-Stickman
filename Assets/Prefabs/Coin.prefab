@@ -328,3 +328,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 25
+  anim1: {fileID: 3445224532978657361}
+  anim2: {fileID: 7856194757802745921}

@@ -6,11 +6,15 @@ using DG.Tweening;
 public class CoinItem : MonoBehaviour
 {
     public int price;
+    [SerializeField] private DOTweenAnimation anim1;
+    [SerializeField] private DOTweenAnimation anim2;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.IncreaseMoney(price);
+            anim1.enabled = false;
+            anim2.enabled = false;
             transform.DOScale(0, 0.5f);
             Destroy(gameObject, 1.3f);
         }

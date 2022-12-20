@@ -113,7 +113,7 @@ public class EnemyComponent : MonoBehaviour
             rb.velocity = Vector3.zero;
             currentHealth = baseHealth;
             PlayerController.Instance.regen(7);
-            Vector3 CoinSpawnPos = new Vector3(Random.Range(transform.position.x, transform.position.x + 3), PlayerController.Instance.transform.position.y, Random.Range(transform.position.z, transform.position.z + 3));
+            Vector3 CoinSpawnPos = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y, transform.position.z);
             switch (enemyType)
             {
                 case enemyType.Axeman:

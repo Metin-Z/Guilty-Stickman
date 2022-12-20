@@ -22,7 +22,7 @@ public class FinalLevel : MonoBehaviour
     }
     public async void Wait()
     {
-        await Task.Delay(2 * 1000);
+        await Task.Delay(1 * 1000);
         SceneManager.LoadScene(0);
     }
 }

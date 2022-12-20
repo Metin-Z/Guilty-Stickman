@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRegen: 20
+  anim1: {fileID: 114104323481378649}
+  anim2: {fileID: 8070081844566616415}
 --- !u!65 &1511142501515889725
 BoxCollider:
   m_ObjectHideFlags: 0

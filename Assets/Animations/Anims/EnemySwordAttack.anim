@@ -66780,7 +66780,8 @@ AnimationClip:
   - time: 0
     functionName: LookPlayer
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 46666260d10d3fc4d82b8cf7f26e8e29,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
