@@ -43,12 +43,14 @@ public class GameManager : Singleton<GameManager>
     }
     public void IncreaseMoney(int money)
     {
+        mainMoney = PlayerPrefs.GetInt("Money");
         mainMoney += money;
         PlayerPrefs.SetInt("Money", mainMoney);
         InterfaceManager.instance.UpdateMoney();
     }
     public void DecreaseMoney(int money)
     {
+        mainMoney = PlayerPrefs.GetInt("Money");
         mainMoney -= money;
         PlayerPrefs.SetInt("Money", mainMoney);
         InterfaceManager.instance.UpdateMoney();
