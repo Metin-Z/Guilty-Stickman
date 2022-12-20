@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public class FinalLevel : MonoBehaviour
 {
@@ -11,16 +13,16 @@ public class FinalLevel : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            InterfaceManager.Instance.GetMenuCanvas().SetActive(true);
-            InterfaceManager.Instance.GetMenuCanvas().SetActive(true);
             if (levelId > PlayerPrefs.GetInt("LevelID"))
             {
                 PlayerPrefs.SetInt("LevelID", levelId);
             }
-            GameObject level;
-            level =GameObject.FindGameObjectWithTag("Level");
-            Destroy(level);
-            Debug.Log("Level Tamamlandý");
+            Wait();
         }
+    }
+    public async void Wait()
+    {
+        await Task.Delay(2 * 1000);
+        SceneManager.LoadScene(0);
     }
 }

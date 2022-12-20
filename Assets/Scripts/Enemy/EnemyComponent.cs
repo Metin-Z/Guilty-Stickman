@@ -20,6 +20,7 @@ public class EnemyComponent : MonoBehaviour
     [SerializeField] private float arrowSpeed;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowPos;
+    private float startSpeed;
     bool active = true;
     private void Start()
     {
@@ -27,6 +28,7 @@ public class EnemyComponent : MonoBehaviour
         {
             case enemyType.Axeman:
                 StartCoroutine(AxemanControl());
+                startSpeed = navMesh.speed;
                 break;
             case enemyType.Archer:
                 StartCoroutine(ArcherControl());
@@ -44,14 +46,16 @@ public class EnemyComponent : MonoBehaviour
             {
                 anim.SetBool("Walk", true);
                 navMesh.SetDestination(player.transform.position);
-                if (Mathf.Abs(distance) <= 3)
+                if (Mathf.Abs(distance) <= 3.5f)
                 {
+                    navMesh.speed = 0;
                     anim.SetBool("Walk", false);
                     anim.SetBool("Attack", true);
                     transform.LookAt(player.transform);
                 }
                 else
                 {
+                    navMesh.speed = startSpeed;
                     anim.SetBool("Attack", false);
                     anim.SetBool("Walk", true);
                 }
@@ -91,6 +95,10 @@ public class EnemyComponent : MonoBehaviour
         arrow.TryGetComponent(out Rigidbody rb);
         rb.AddForce(transform.forward * arrowSpeed);
     }
+    public void LookPlayer()
+    {
+        transform.LookAt(PlayerController.Instance.transform);
+    }
     public void Health()
     {
         HealthBar.maxValue = maxHealth;
@@ -106,7 +114,15 @@ public class EnemyComponent : MonoBehaviour
             currentHealth = baseHealth;
             PlayerController.Instance.regen(7);
             Vector3 CoinSpawnPos = new Vector3(Random.Range(transform.position.x, transform.position.x + 3), PlayerController.Instance.transform.position.y, Random.Range(transform.position.z, transform.position.z + 3));
-
+            switch (enemyType)
+            {
+                case enemyType.Axeman:
+                    PlayerPrefs.SetInt("AxemanCount",PlayerPrefs.GetInt("AxemanCount")+1);
+                    break;
+                case enemyType.Archer:
+                    PlayerPrefs.SetInt("ArcherCount", PlayerPrefs.GetInt("ArcherCount") + 1);
+                    break;
+            }
             Instantiate(coinPrefab, CoinSpawnPos, Quaternion.identity);
             Destroy(gameObject, 2);
         }

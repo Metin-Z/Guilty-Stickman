@@ -12,7 +12,7 @@ public class CoinItem : MonoBehaviour
         {
             GameManager.Instance.IncreaseMoney(price);
             transform.DOScale(0, 0.5f);
-            Destroy(gameObject, 0.6f);
+            Destroy(gameObject, 1.3f);
         }
     }
 }

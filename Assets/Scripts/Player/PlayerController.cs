@@ -104,6 +104,7 @@ public class PlayerController : Singleton<PlayerController>
     public void StartLevel()
     {
         currentHealth = maxHealth;
+        speed = myStartSpeed;
         Health();
     }
 
