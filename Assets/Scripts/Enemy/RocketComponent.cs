@@ -8,6 +8,9 @@ public class RocketComponent : MonoBehaviour
     [SerializeField] private float mySpeed =1000;
     [SerializeField] private int myDamage;
 
+    [Header("Objects")]
+    [SerializeField] private GameObject explosion;
+
     [Header("Components")]
     [SerializeField] private BoxCollider boxCollider;
     [SerializeField] private MeshRenderer meshRenderer;
@@ -36,7 +39,10 @@ public class RocketComponent : MonoBehaviour
                 hit.TryGetComponent(out PlayerController player);
                 player.takeDamage(myDamage);
             }
+
         }
+        Instantiate(explosion, transform.position, Quaternion.identity);
+
     }
     public void CloseComponents()
     {
@@ -49,9 +55,9 @@ public class RocketComponent : MonoBehaviour
     private void Update()
     {
         //Visualize(transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, PlayerController.Instance.transform.position, 14 * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, playerPos, 35 * Time.deltaTime);
         line.SetPosition(0,new Vector3(0,0,0));
-        line.SetPosition(1, new Vector3(0, 0, playerPos.z * 4));
+        line.SetPosition(1, new Vector3(0, 0, playerPos.z * 5));
     }
     //void Visualize(Vector3 vo)
     //{
