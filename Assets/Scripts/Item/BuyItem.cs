@@ -88,7 +88,7 @@ public class BuyItem : MonoBehaviour
         {
             foreach (var item in SwordList)
             {
-                item.transform.parent.gameObject.TryGetComponent(out SpawnItem itemSpawn);
+                item.transform.TryGetComponent(out SpawnItem itemSpawn);
                 itemSpawn.ResetItem();
             }
         }
@@ -96,7 +96,7 @@ public class BuyItem : MonoBehaviour
         {
             foreach (var item in HatList)
             {
-                item.transform.parent.gameObject.TryGetComponent(out SpawnItem itemSpawn);
+                item.transform.TryGetComponent(out SpawnItem itemSpawn);
                 itemSpawn.ResetItem();
             }
         }

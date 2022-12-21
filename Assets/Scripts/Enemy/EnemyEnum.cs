@@ -1,5 +1,6 @@
 public enum enemyType
 {
     Axeman,
-    Archer
+    Archer,
+    Bomber
 }

@@ -19,6 +19,7 @@ public class EnemyComponent : MonoBehaviour
     [SerializeField] private enemyType enemyType;
     [SerializeField] private float arrowSpeed;
     [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private GameObject rocketPrefab;
     [SerializeField] private Transform arrowPos;
     private float startSpeed;
     bool active = true;
@@ -32,6 +33,9 @@ public class EnemyComponent : MonoBehaviour
                 break;
             case enemyType.Archer:
                 StartCoroutine(ArcherControl());
+                break;
+            case enemyType.Bomber:
+                StartCoroutine(BomberControl());
                 break;
         }
     }
@@ -140,5 +144,13 @@ public class EnemyComponent : MonoBehaviour
             currentHealth = maxHealth;
         }
         Health();
+    }
+    public IEnumerator BomberControl()
+    {
+        while (active == true)
+        {
+            yield return new WaitForSeconds(5);
+            Instantiate(rocketPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

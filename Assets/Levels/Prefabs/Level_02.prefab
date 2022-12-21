@@ -3616,7 +3616,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Kill Enemy
+  m_text: Kill Axeman
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0bf0c9f6dc389b7438c37d906bf3f6e7, type: 2}
   m_sharedMaterial: {fileID: -8033305960762895878, guid: 0bf0c9f6dc389b7438c37d906bf3f6e7,
@@ -22583,7 +22583,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Go to Finish
+  m_text: Escape Enemies
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0bf0c9f6dc389b7438c37d906bf3f6e7, type: 2}
   m_sharedMaterial: {fileID: -8033305960762895878, guid: 0bf0c9f6dc389b7438c37d906bf3f6e7,

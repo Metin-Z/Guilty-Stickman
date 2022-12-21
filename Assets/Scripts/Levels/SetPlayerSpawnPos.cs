@@ -13,9 +13,13 @@ public class SetPlayerSpawnPos : MonoBehaviour
         StartCoroutine(Tplayer());
 
     }
+    private void Update()
+    {
+        PlayerController.Instance.transform.position = transform.position;
+    }
     public IEnumerator Tplayer()
     {
-        yield return new WaitForSeconds(0.2f);
-        PlayerController.Instance.transform.position = transform.position;
+        yield return new WaitForSeconds(3f);
+        gameObject.SetActive(false);
     }
 }
