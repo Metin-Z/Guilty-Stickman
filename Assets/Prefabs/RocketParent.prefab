@@ -271,6 +271,7 @@ MonoBehaviour:
   rb: {fileID: 3073986652367935633}
   line: {fileID: 9051469700502128373}
   playerPos: {x: 0, y: 0, z: 0}
+  lineSegment: 7
 --- !u!54 &3073986652367935633
 Rigidbody:
   m_ObjectHideFlags: 0

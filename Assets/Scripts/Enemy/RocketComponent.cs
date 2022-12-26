@@ -18,15 +18,15 @@ public class RocketComponent : MonoBehaviour
 
     [SerializeField] private LineRenderer line;
     [SerializeField] private Vector3 playerPos;
-    //[SerializeField] private int lineSegment =10;
+    [SerializeField] private int lineSegment =10;
 
     void Start()
     {
         transform.LookAt(PlayerController.Instance.transform);
-        //Vector3 shootPos = (PlayerController.Instance.transform.position - transform.position).normalized;
-        //rb.AddForce(shootPos * mySpeed);
+        Vector3 shootPos = (PlayerController.Instance.transform.position - transform.position).normalized;
+        rb.AddForce(shootPos * mySpeed);
         playerPos = PlayerController.Instance.transform.position;
-        //line.positionCount = lineSegment;
+        line.positionCount = lineSegment;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -54,28 +54,28 @@ public class RocketComponent : MonoBehaviour
     }
     private void Update()
     {
-        //Visualize(transform.position);
+        Visualize(transform.position);
         transform.position = Vector3.MoveTowards(transform.position, playerPos, 35 * Time.deltaTime);
-        line.SetPosition(0,new Vector3(0,0,0));
-        line.SetPosition(1, new Vector3(0, 0, playerPos.z * 5));
+        //line.SetPosition(0,new Vector3(0,0,0));
+        //line.SetPosition(1, new Vector3(0, 0, playerPos.z * 5));
     }
-    //void Visualize(Vector3 vo)
-    //{
-    //    for (int i = 0; i < lineSegment; i++)
-    //    {
-    //        Vector3 pos = CalculatorPosInTime(vo, i / (float)lineSegment);
-    //        line.SetPosition(i, pos);
-    //    }
-    //}
-    //Vector3 CalculatorPosInTime(Vector3 vo,float time)
-    //{
-    //    Vector3 Vxz = vo;
-    //    vo.y = 0f;
+    void Visualize(Vector3 vo)
+    {
+        for (int i = 0; i < lineSegment; i++)
+        {
+            Vector3 pos = CalculatorPosInTime(vo, i / (float)lineSegment);
+            line.SetPosition(i,new Vector3(0,0, pos.z));
+        }
+    }
+    Vector3 CalculatorPosInTime(Vector3 vo, float time)
+    {
+        Vector3 Vxz = vo;
+        Vxz.y = 0f;
 
-    //    Vector3 result = PlayerController.Instance.transform.position + vo * time;
-    //    float sY = (-0.5f * Mathf.Abs(Physics.gravity.y) * (time * time)) + (vo.y * time) + PlayerController.Instance.transform.position.y;
-    //    result.y = sY;
+        Vector3 result = PlayerController.Instance.transform.position + vo * time;
+        float sY = (-0.5f * Mathf.Abs(Physics.gravity.y) * (time * time)) + (vo.y * time) + PlayerController.Instance.transform.position.y;
+        result.y = sY;
 
-    //    return result;
-    //}
+        return result;
+    }
 }
